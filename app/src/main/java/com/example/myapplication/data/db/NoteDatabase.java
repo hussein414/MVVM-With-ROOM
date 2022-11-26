@@ -1,13 +1,15 @@
-package com.example.myapplication;
+package com.example.myapplication.data.db;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import com.example.myapplication.data.model.NoteEntity;
+import com.example.myapplication.utils.task.db.PopulateDbAsyncTask;
 
 @Database(entities = {NoteEntity.class}, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
@@ -36,19 +38,5 @@ public abstract class NoteDatabase extends RoomDatabase {
         }
     };
 
-    public static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-        private NoteDao noteDao;
 
-        public PopulateDbAsyncTask(NoteDatabase noteDatabase) {
-            this.noteDao = noteDatabase.noteDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            noteDao.insertData(new NoteEntity("title1", "descrption1", 1));
-            noteDao.insertData(new NoteEntity("title2", "descrption2", 2));
-            noteDao.insertData(new NoteEntity("title3", "descrption3", 3));
-            return null;
-        }
-    }
 }

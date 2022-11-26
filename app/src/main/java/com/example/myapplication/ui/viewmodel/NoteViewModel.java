@@ -1,10 +1,13 @@
-package com.example.myapplication;
+package com.example.myapplication.ui.viewmodel;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.myapplication.data.model.NoteEntity;
+import com.example.myapplication.data.repository.NoteRepository;
 
 import java.util.List;
 
