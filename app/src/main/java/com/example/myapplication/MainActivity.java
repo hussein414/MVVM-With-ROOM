@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,6 +46,28 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
             startActivityForResult(intent, Constance.ADD_NOTE_REQUEST);
         });
+        setDeleteItem();
+        binding.deleteAll.setOnClickListener(v -> {
+            noteViewModel.deleteAll();
+            Toast.makeText(this, "all notes deleted", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void setDeleteItem() {
+        //delete item
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                noteViewModel.delete(noteAdapter.getNoteAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(MainActivity.this, "note delete", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(binding.recyclerView);
     }
 
     @Override
@@ -57,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             NoteEntity noteEntity = new NoteEntity(title, description, priority);
             noteViewModel.insert(noteEntity);
             Toast.makeText(MainActivity.this, "note saved", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             Toast.makeText(MainActivity.this, "note not saved", Toast.LENGTH_SHORT).show();
 
         }
