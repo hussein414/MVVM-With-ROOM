@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:orientation="vertical"
+    tools:context=".AddNoteActivity">
+
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/close"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_baseline_close_24"
+        app:tint="@color/white" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/inputTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_input"
+        android:hint="input title"
+        android:padding="10dp"
+
+        android:textColor="@color/black"
+        android:textColorHint="#979797"
+        android:textSize="25sp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/inputDescriptio"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15sp"
+        android:background="@drawable/background_input"
+        android:gravity="top"
+        android:hint="input descriptio"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#979797"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:text="priority"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold|italic" />
+
+    <NumberPicker
+        android:id="@+id/numberPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:solidColor="@color/black"
+        android:background="@drawable/background_input" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAdd"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        android:text="Add"
+        android:textColor="@color/mainColor"
+        app:cornerRadius="8dp" />
+</LinearLayout>
